@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+
+  width: 100%;
+}
+
+.product {
+  width: 200px;
+  height: 275px;
+  padding: 5px;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+}
