@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from '../../service/product.service';
+import {Product} from '../../types/product.type';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+  private products: Array<Product> = new Array<Product>();
 
-  ngOnInit() {
+  constructor(private productService: ProductService) {}
+
+  async ngOnInit() {
+    this.products = await this.productService.getProducts();
   }
 
+  productDetails(id: number) {
+    //
+  }
 }
