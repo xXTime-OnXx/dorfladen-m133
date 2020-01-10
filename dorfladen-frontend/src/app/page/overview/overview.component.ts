@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class OverviewComponent implements OnInit {
 
-  private products: Array<Product> = new Array<Product>();
+  public products: Array<Product> = new Array<Product>();
 
   constructor(private productService: ProductService, private router: Router) {}
 
