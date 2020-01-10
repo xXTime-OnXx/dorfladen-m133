@@ -40,10 +40,7 @@ app.get("/api/product/:id", (req, res) => {
 
 /* Shopping Cart Api */
 app.get("/api/shopping-cart", (req, res) => {
-    console.log(req.session);
-    console.log(req.headers);
     if (req.session.cart == undefined) {
-        console.log('cart undefined');
         req.session.cart = <Product[]>[];
     }
 
@@ -51,8 +48,6 @@ app.get("/api/shopping-cart", (req, res) => {
 });
 
 app.post("/api/shopping-cart", (req, res) => {
-    console.log(req.session);
-    console.log(req.headers);
     if (req.session.cart == undefined) {
         req.session.cart = <Product[]>[];
     }
@@ -67,6 +62,5 @@ app.post("/api/shopping-cart", (req, res) => {
 /* libs & assets */
 app.use("/assets", express.static(path.join(__dirname, "/assets")));
 app.use("/spectre", express.static(path.join(__dirname, "..", "/node_modules/spectre.css/dist")));
-app.use("/", express.static(path.join(__dirname, "/tmp-frontend")));
 
-app.listen(8080, () => console.log("listening"));
+app.listen(8080, () => console.log("server is listening"));
