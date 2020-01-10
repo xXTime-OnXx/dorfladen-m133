@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {Product} from '../../types/product.type';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -11,13 +12,13 @@ export class OverviewComponent implements OnInit {
 
   private products: Array<Product> = new Array<Product>();
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   async ngOnInit() {
     this.products = await this.productService.getProducts();
   }
 
-  productDetails(id: number) {
-    //
+  async productDetails(id: number) {
+    await this.router.navigate(['/details/' + id]);
   }
 }

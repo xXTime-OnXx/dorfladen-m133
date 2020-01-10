@@ -13,4 +13,8 @@ export class ProductService {
     return await this.http.get<Array<Product>>('http://localhost:8080/api/products').toPromise();
   }
 
+  public async getProduct(productId: string): Promise<Product> {
+    return await this.http.get<Product>('http://localhost:8080/api/product/' + productId).toPromise();
+  }
+
 }
