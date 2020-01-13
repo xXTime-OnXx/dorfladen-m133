@@ -1,0 +1,16 @@
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>Produkt</th>
+      <th>Einzelpreis</th>
+      <th>Anzahl</th>
+      <th>Total</th>
+    </tr>
+    <tr *ngFor="let product of distinctProducts">
+      <td>{{ product.productName }}</td>
+      <td>{{ product.specialOffer }}</td>
+      <td><button (click)="increment(product)">+</button>{{ productList.get(product.id) }}<button (click)="decrement(product)">-</button></td>
+      <td>{{ product.specialOffer * productList.get(product.id) }}</td>
+    </tr>
+  </table>
+</div>
