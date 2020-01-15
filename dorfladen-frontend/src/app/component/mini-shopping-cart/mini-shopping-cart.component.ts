@@ -18,7 +18,6 @@ export class MiniShoppingCartComponent implements OnInit {
   async ngOnInit() {
     this.productService.shoppingCartState$.subscribe(async () => {
       await this.updateCart();
-      console.log('subject updated');
     });
     this.updateCart();
   }
@@ -33,7 +32,6 @@ export class MiniShoppingCartComponent implements OnInit {
     for (const product of this.shoppingCart) {
       sum += product.specialOffer;
     }
-    console.log(sum);
     this.priceSum = sum;
   }
 

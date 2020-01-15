@@ -12,15 +12,16 @@ export class ShoppingCartComponent implements OnInit {
   public productList: Map<string, number> = new Map();
   private shoppingCart: Array<Product> = [];
   public distinctProducts: Array<Product> = [];
+  public total: number;
 
   constructor(private productService: ProductService) {
   }
 
   async ngOnInit() {
+    await this.loadCart();
     this.productService.shoppingCartState$.subscribe(async () => {
       await this.loadCart();
     });
-    await this.loadCart();
   }
 
   private async loadCart() {
@@ -31,6 +32,7 @@ export class ShoppingCartComponent implements OnInit {
     for (const product of this.shoppingCart) {
       const amount = this.productList.get(product.id);
       this.productList.set(product.id, amount === undefined ? 1 : amount + 1);
+      this.total += product.specialOffer;
     }
   }
 
