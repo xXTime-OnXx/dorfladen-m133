@@ -28,4 +28,9 @@ export class ProductService {
     await this.http.post('http://localhost:8080/api/shopping-cart', product, {responseType: 'text'}).toPromise();
     this.shoppingCartState$.next();
   }
+
+  public async removeFromShoppingCart(product: Product): Promise<void> {
+    await this.http.put('http://localhost:8080/api/shopping-cart/delete', product, {responseType: 'text'}).toPromise();
+    this.shoppingCartState$.next();
+  }
 }

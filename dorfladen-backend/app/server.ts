@@ -35,7 +35,7 @@ app.get("/api/products", (req, res) => {
 
 app.get("/api/product/:id", (req, res) => {
     loadProducts();
-    res.json(products.filter(p => p.id == parseInt(req.params.id)).pop());
+    res.json(products.filter(p => p.id == req.params.id).pop());
 });
 
 /* Shopping Cart Api */
@@ -55,6 +55,15 @@ app.post("/api/shopping-cart", (req, res) => {
         ...req.session.cart,
         <Product>req.body
     ];
+
+    res.sendStatus(200);
+});
+
+app.put("/api/shopping-cart/delete", (req, res) => {
+    if (req.session.cart == undefined) {
+        req.session.cart = <Product[]>[];
+    }
+    req.session.cart.splice(req.session.cart.findIndex(p => p.id == <Product>req.body.id), 1);
 
     res.sendStatus(200);
 });

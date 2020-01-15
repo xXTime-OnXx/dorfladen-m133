@@ -9,7 +9,7 @@ import {Product} from '../../types/product.type';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  public productList: Map<number, number> = new Map();
+  public productList: Map<string, number> = new Map();
   private shoppingCart: Array<Product> = [];
   public distinctProducts: Array<Product> = [];
 
@@ -17,13 +17,17 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.shoppingCart = await this.productService.getShoppingCart();
+    this.productService.shoppingCartState$.subscribe(async () => {
+      await this.loadCart();
+    });
     await this.loadCart();
   }
 
   private async loadCart() {
+    this.shoppingCart = await this.productService.getShoppingCart();
     this.distinctProducts = this.removeDuplicates(this.shoppingCart, 'id');
 
+    this.productList = new Map();
     for (const product of this.shoppingCart) {
       const amount = this.productList.get(product.id);
       this.productList.set(product.id, amount === undefined ? 1 : amount + 1);
@@ -36,11 +40,11 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  decrement(product: Product) {
-    // this.shoppingCart.filter()
+  async decrement(product: Product) {
+    await this.productService.removeFromShoppingCart(product);
   }
 
-  increment(product: Product) {
-
+  async increment(product: Product) {
+    await this.productService.addProductToShoppingCart(product);
   }
 }
