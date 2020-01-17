@@ -69,11 +69,11 @@ app.put("/api/shopping-cart/delete", (req, res) => {
 });
 
 app.put("/api/shopping-cart/checkout", (req, res) => {
-    if (!(<Checkout>req.body).firstname.match(/[a-zA-Z]/)) {
+    if (!(<Checkout>req.body).firstname.match(/^[a-zA-z]*$/)) {
         res.sendStatus(400);
         return;
     }
-    if (!(<Checkout>req.body).lastname.match(/[a-zA-Z]/)) {
+    if (!(<Checkout>req.body).lastname.match(/^[a-zA-z]*$/)) {
         res.sendStatus(400);
         return;
     }
@@ -88,6 +88,5 @@ app.put("/api/shopping-cart/checkout", (req, res) => {
 
 /* libs & assets */
 app.use("/assets", express.static(path.join(__dirname, "/assets")));
-app.use("/spectre", express.static(path.join(__dirname, "..", "/node_modules/spectre.css/dist")));
 
 app.listen(8080, () => console.log("server is listening"));

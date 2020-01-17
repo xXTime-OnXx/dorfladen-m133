@@ -21,3 +21,4 @@ $ npm start --prefix ./dorfladen-backend
 # Für Frontend:
 $ npm start --prefix ./dorfladen-frontend
 ```
+Wenn beide Projekte gestartet sind kann der Dorfladen BBZW auf <http://localhost:4200> aufgerufen werden.

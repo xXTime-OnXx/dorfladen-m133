@@ -26,10 +26,10 @@ export class CheckOutComponent implements OnInit {
   }
 
   inputIsValid() {
-    if (!this.firstname.match(/[a-zA-Z]/)) {
+    if (!this.firstname.match(/^[a-zA-z]*$/)) {
       return false;
     }
-    if (!this.firstname.match(/[a-zA-Z]/)) {
+    if (!this.firstname.match(/^[a-zA-z]*$/)) {
       return false;
     }
     if (!this.email.match(/[^@]+@[^\.]+\..+/)) {

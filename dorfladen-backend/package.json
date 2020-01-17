@@ -1,22 +1,13 @@
 {
-    "name": "heroes-simple-mpa-ts",
-    "version": "1.0.0",
-    "description": "Beispiel-Implementation einer TypeScript MPA",
+    "name": "dorfladen-backend",
+    "version": "0.0.0",
     "scripts": {
         "prebuild:server": "node ./node_modules/rimraf/bin ./build",
         "build:server": "tsc",
         "postbuild:server": "node ./node_modules/copyfiles/copyfiles -u 1 ./app/assets/**/* ./build",
-        "build:client": "webpack --mode=none",
-        "prestart": "npm run build:server && npm run build:client",
+        "prestart": "npm run build:server",
         "start": "node ./build/server.js"
     },
-    "keywords": [
-        "BBZW",
-        "TypeScript",
-        "MPA"
-    ],
-    "author": "Domenic Helfenstein",
-    "license": "MIT",
     "dependencies": {
         "body-parser": "1.19.0",
         "cors": "^2.8.5",
