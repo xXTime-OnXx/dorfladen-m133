@@ -10,6 +10,8 @@ import { ProductDetailsComponent } from './page/product-details/product-details.
 import { MiniShoppingCartComponent } from './component/mini-shopping-cart/mini-shopping-cart.component';
 import {CustomHttpInterceptorService} from './http-interceptor';
 import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.component';
+import {FormsModule} from "@angular/forms";
+import { CheckOutComponent } from './page/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.compon
     ProductDetailsComponent,
     MiniShoppingCartComponent,
     ShoppingCartComponent,
+    CheckOutComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+    ],
   providers: [
     ProductService,
     {

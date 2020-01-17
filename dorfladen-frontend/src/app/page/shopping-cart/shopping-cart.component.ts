@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {Product} from '../../types/product.type';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,9 +13,9 @@ export class ShoppingCartComponent implements OnInit {
   public productList: Map<string, number> = new Map();
   private shoppingCart: Array<Product> = [];
   public distinctProducts: Array<Product> = [];
-  public total: number;
+  public total = 0.00;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -29,6 +30,8 @@ export class ShoppingCartComponent implements OnInit {
     this.distinctProducts = this.removeDuplicates(this.shoppingCart, 'id');
 
     this.productList = new Map();
+    this.total = 0.00;
+
     for (const product of this.shoppingCart) {
       const amount = this.productList.get(product.id);
       this.productList.set(product.id, amount === undefined ? 1 : amount + 1);
@@ -48,5 +51,9 @@ export class ShoppingCartComponent implements OnInit {
 
   async increment(product: Product) {
     await this.productService.addProductToShoppingCart(product);
+  }
+
+  async checkOut() {
+    await this.router.navigate(['/check-out']);
   }
 }

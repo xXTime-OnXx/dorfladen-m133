@@ -1,3 +1,6 @@
+<div class="shopping-cart-container">
+  <app-mini-shopping-cart></app-mini-shopping-cart>
+</div>
 <div>
   <table style="width:100%">
     <tr>
@@ -13,10 +16,13 @@
       <td>{{ (product.specialOffer * productList.get(product.id)) | number:'1.2' }}</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><b>{{total | number:'1.2'}}</b></td>
+      <td style="visibility: hidden"></td>
+      <td style="visibility: hidden"></td>
+      <td style="visibility: hidden"></td>
+      <td><b>{{(+total) | number:'1.2'}}</b></td>
     </tr>
   </table>
+</div>
+<div>
+  <button *ngIf="total > 0" (click)="checkOut()">Einkauf Abschliessen</button>
 </div>

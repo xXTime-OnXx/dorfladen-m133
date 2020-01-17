@@ -6,3 +6,13 @@ table, th, td {
   border: 1px solid black;
   text-align: left;
 }
+
+th {
+  background-color: gray;
+}
+
+.shopping-cart-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}

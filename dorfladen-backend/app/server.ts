@@ -4,7 +4,7 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as expressSession from "express-session";
 import * as fs from "fs";
-import {Product} from "./types";
+import {Checkout, Product} from "./types";
 
 const app = express();
 app.use(cors({
@@ -65,6 +65,24 @@ app.put("/api/shopping-cart/delete", (req, res) => {
     }
     req.session.cart.splice(req.session.cart.findIndex(p => p.id == <Product>req.body.id), 1);
 
+    res.sendStatus(200);
+});
+
+app.put("/api/shopping-cart/checkout", (req, res) => {
+    if (!(<Checkout>req.body).firstname.match(/[a-zA-Z]/)) {
+        res.sendStatus(400);
+        return;
+    }
+    if (!(<Checkout>req.body).lastname.match(/[a-zA-Z]/)) {
+        res.sendStatus(400);
+        return;
+    }
+    if (!(<Checkout>req.body).email.match(/[^@]+@[^\.]+\..+/)) {
+        res.sendStatus(400);
+        return;
+    }
+
+    req.session.cart = <Product[]>[];
     res.sendStatus(200);
 });
 

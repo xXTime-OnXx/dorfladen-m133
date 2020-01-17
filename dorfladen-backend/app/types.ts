@@ -6,3 +6,10 @@ export type Product = {
     imageName: string;
     description: string;
 }
+
+export type Checkout = {
+    firstname: string;
+    lastname: string;
+    email: string;
+}
+

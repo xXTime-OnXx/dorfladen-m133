@@ -18,7 +18,7 @@ export class OverviewComponent implements OnInit {
     this.products = await this.productService.getProducts();
   }
 
-  async productDetails(id: number) {
+  async productDetails(id: string) {
     await this.router.navigate(['/details/' + id]);
   }
 }

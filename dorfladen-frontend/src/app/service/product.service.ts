@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../types/product.type';
 import {Subject} from 'rxjs';
+import {Checkout} from "../types/checkout.type";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,11 @@ export class ProductService {
 
   public async removeFromShoppingCart(product: Product): Promise<void> {
     await this.http.put('http://localhost:8080/api/shopping-cart/delete', product, {responseType: 'text'}).toPromise();
+    this.shoppingCartState$.next();
+  }
+
+  public async checkout(checkout: Checkout) {
+    await this.http.put('http://localhost:8080/api/shopping-cart/checkout', checkout, {responseType: 'text'}).toPromise();
     this.shoppingCartState$.next();
   }
 }
